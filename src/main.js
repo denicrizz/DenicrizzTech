@@ -17,14 +17,15 @@ k.loadSprite("spritesheet", "./spritesheet.png", {
 
 k.loadSprite("map", "./map.png");
 
+k.loadSound("background-music", "/assets/stardew valley.mp3");
 k.setBackground(k.Color.fromHex("#311047"));
 
 k.scene("main", async () => {
+    k.play("background-music", { loop: true, volume: 0.5 });
   const mapData = await (await fetch("./map.json")).json();
   const layers = mapData.layers;
 
   const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
-
   const player = k.make([
     k.sprite("spritesheet", { anim: "idle-down" }),
     k.area({
@@ -41,6 +42,7 @@ k.scene("main", async () => {
     },
     "player",
   ]);
+
 
   for (const layer of layers) {
     if (layer.name === "boundaries") {
