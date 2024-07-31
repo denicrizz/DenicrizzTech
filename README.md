@@ -1,2 +1,0 @@
-# DenicrizzTech
-My Website Portofolio
