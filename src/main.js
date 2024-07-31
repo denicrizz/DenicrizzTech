@@ -19,9 +19,18 @@ k.loadSprite("map", "./map.png");
 
 k.loadSound("background-music", "/assets/stardew valley.mp3");
 k.setBackground(k.Color.fromHex("#311047"));
+let musicStarted = false;
+
+document.addEventListener('click', () => {
+  if (!musicStarted) {
+    musicStarted = true;
+    if (typeof k !== 'undefined') {
+      k.play("background-music", { loop: true, volume: 0.5 });
+    }
+  }
+});
 
 k.scene("main", async () => {
-    k.play("background-music", { loop: true, volume: 0.5 });
   const mapData = await (await fetch("./map.json")).json();
   const layers = mapData.layers;
 
